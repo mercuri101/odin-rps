@@ -1,4 +1,5 @@
-function getComputerChoice() {
+function getComputerChoice() 
+{
   let choice = Math.floor(Math.random()*3);
 
   if (choice == 0) {
@@ -12,37 +13,79 @@ function getComputerChoice() {
   }
 }
 
-function playRound(playerSelection, computerSelection) {
-
+function playRound(playerSelection, computerSelection)
+{
   // If selections match, it's a draw
   if (playerSelection.toLowerCase() === computerSelection) {
-    return "It's a draw!";
+    alert("It's a draw!");
+    return 0;
   }
 
   // Player plays rock
   else if (playerSelection.toLowerCase() === "rock") {
-    return (computerSelection === "paper") ?
-      "You lose! Paper beats rock." :
-      "You win! Rock beats scissors";
+    if (computerSelection === "paper") {
+      alert("You lose! Paper beats rock.");
+      return -1;
+    }
+    else {
+      alert("You win! Rock beats scissors");
+      return 1;
+    }
   }
 
   // Player plays paper
   else if (playerSelection.toLowerCase() === "paper") {
-    return (computerSelection === "scissors") ?
-      "You lose! Scissors beat paper." :
-      "You win! Paper beats rock.";
+    if (computerSelection === "scissors") {
+      alert("You lose! Scissors beat paper.");
+      return -1;
+    }
+      alert("You win! Paper beats rock.");
+      return 1;
   }
 
   // Player plays scissors
   else{
-    return (computerSelection === "rock") ?
-      "You lose! Rock beats scissors." :
-      "You win! Scissors beat paper.";
+    if (computerSelection === "rock") {
+      alert("You lose! Rock beats scissors.");
+      return -1;
+    }
+      alert("You win! Scissors beat paper.");
+      return 1;
   }
 }
 
+function reportGameResult(playerScore, computerScore) 
+{
+  let message = (playerScore == computerScore) ?
+    "Tie." :
+    (playerScore > computerScore) ?
+      "You win." :
+      "Computer wins.";
 
-const playerSelection = "PAPER";
-const computerSelection = getComputerChoice();
-console.log("Computer chose " + computerSelection);
-console.log(playRound(playerSelection, computerSelection));
+  alert(`You: ${playerScore}    Computer: ${computerScore}\n${message}`);
+}
+
+function game()
+{
+  let playerScore = 0, computerScore = 0;
+
+  // Play a five round game
+  for (let i = 0; i < 5; i++) {
+    let playerSelection = prompt(`Round ${i+1}. What do you play?`);
+    let computerSelection = getComputerChoice();
+    let roundResult = playRound(playerSelection, computerSelection);
+
+    // Update scores
+    if (roundResult === 1) {
+      playerScore++;
+    }
+    else if (roundResult === -1) {
+      computerScore++;
+    }
+  }
+
+  // Report results
+  reportGameResult(playerScore, computerScore);
+}
+
+game();
