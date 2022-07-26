@@ -84,6 +84,7 @@ function playRound(playerSelection, computerSelection)
 
 function promptRestart() {
   const restartBtn = document.createElement("button");
+  restartBtn.setAttribute("class", "restart-btn");
   restartBtn.textContent = "Restart";
   body.insertBefore(restartBtn, selContainer);
   selContainer.remove();

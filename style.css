@@ -11,13 +11,21 @@ body {
   justify-content: center;
 }
 
-.selection {
+.selection,
+.restart-btn {
   border: 1px solid indigo;
   padding: 10px;
   border-radius: 5px;
+  width: 100px;
 }
 
-.selection:hover {
+.restart-btn {
+  border: 1px dashed black;
+  width: 150px;
+}
+
+.selection:hover,
+.restart-btn:hover {
   background-color: gray;
   color: white;
 }
