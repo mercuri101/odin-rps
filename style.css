@@ -1,3 +1,10 @@
+body {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
 .selections {
   display: flex;
   gap: 10px;
@@ -13,4 +20,13 @@
 .selection:hover {
   background-color: gray;
   color: white;
+}
+
+.results {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 30px;
+  width: 400px;
 }

@@ -1,9 +1,12 @@
 const selections = document.querySelectorAll(".selection");
+const display = document.querySelector(".results");
 
 // For each selection play round on click with the selection and 
 // computer's choice as arguments.
 selections.forEach(sel => sel.addEventListener("click",
   () => playRound(sel.getAttribute("data-selection"), getComputerChoice())));
+
+
 
 
 function getComputerChoice()
@@ -25,18 +28,18 @@ function playRound(playerSelection, computerSelection)
 {
   // If selections match, it's a draw
   if (playerSelection.toLowerCase() === computerSelection) {
-    alert("It's a draw!");
+    display.textContent = "It's a draw!";
     return 0;
   }
 
   // Player plays rock
   else if (playerSelection.toLowerCase() === "rock") {
     if (computerSelection === "paper") {
-      alert("You lose! Paper beats rock.");
+      display.textContent = "You lose! Paper beats rock.";
       return -1;
     }
     else {
-      alert("You win! Rock beats scissors");
+      display.textContent = "You win! Rock beats scissors";
       return 1;
     }
   }
@@ -44,20 +47,20 @@ function playRound(playerSelection, computerSelection)
   // Player plays paper
   else if (playerSelection.toLowerCase() === "paper") {
     if (computerSelection === "scissors") {
-      alert("You lose! Scissors beat paper.");
+      display.textContent = "You lose! Scissors beat paper.";
       return -1;
     }
-      alert("You win! Paper beats rock.");
+      display.textContent = "You win! Paper beats rock.";
       return 1;
   }
 
   // Player plays scissors
   else{
     if (computerSelection === "rock") {
-      alert("You lose! Rock beats scissors.");
+      display.textContent = "You lose! Rock beats scissors.";
       return -1;
     }
-      alert("You win! Scissors beat paper.");
+      display.textContent = "You win! Scissors beat paper.";
       return 1;
   }
 }
@@ -70,7 +73,7 @@ function reportGameResult(playerScore, computerScore)
       "You win." :
       "Computer wins.";
 
-  alert(`You: ${playerScore}    Computer: ${computerScore}\n${message}`);
+  display.textContent = `You: ${playerScore}    Computer: ${computerScore}\n${message}`;
 }
 
 function game()
