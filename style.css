@@ -22,11 +22,33 @@ body {
   color: white;
 }
 
-.results {
+.results,
+.final-result {
   border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 30px;
   width: 400px;
+}
+
+.final-result {
+  font-weight: bold;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cur-score {
+  border: 1px solid black;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: 30px;
+}
+
+h3 {
+  margin: 0;
 }
