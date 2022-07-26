@@ -1,4 +1,12 @@
-function getComputerChoice() 
+const selections = document.querySelectorAll(".selection");
+
+// For each selection play round on click with the selection and 
+// computer's choice as arguments.
+selections.forEach(sel => sel.addEventListener("click",
+  () => playRound(sel.getAttribute("data-selection"), getComputerChoice())));
+
+
+function getComputerChoice()
 {
   let choice = Math.floor(Math.random()*3);
 
@@ -54,7 +62,7 @@ function playRound(playerSelection, computerSelection)
   }
 }
 
-function reportGameResult(playerScore, computerScore) 
+function reportGameResult(playerScore, computerScore)
 {
   let message = (playerScore == computerScore) ?
     "Tie." :
@@ -87,5 +95,3 @@ function game()
   // Report results
   reportGameResult(playerScore, computerScore);
 }
-
-game();
