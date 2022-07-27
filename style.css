@@ -1,11 +1,13 @@
 body {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 15px;
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
+/* Header */
 .header {
   display: flex;
   background-color: lightskyblue;
@@ -35,7 +37,21 @@ body {
 #source-code:hover {
   color: slategray;
 }
+/* Header */
 
+
+/* Instruction */
+.instruction {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  color: rgb(48, 80, 80);
+  font-weight: 700;
+}
+/* Instruction */
+
+
+/* Selections */
 .selections {
   display: flex;
   gap: 10px;
@@ -44,10 +60,11 @@ body {
 
 .selection,
 .restart-btn {
-  border: 1px solid indigo;
-  padding: 10px;
-  border-radius: 5px;
+  border: 2px solid darkslategray;
+  padding: 8px;
+  border-radius: 150px;
   width: 100px;
+  height: 100px;
 }
 
 .restart-btn {
@@ -57,9 +74,13 @@ body {
 
 .selection:hover,
 .restart-btn:hover {
-  background-color: gray;
+  /* background-color: orange; */
   color: white;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 2px orange inset;
 }
+/* Selections */
+
 
 .results,
 .final-result {
