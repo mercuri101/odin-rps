@@ -1,9 +1,13 @@
 const body = document.querySelector("body");
 const selections = document.querySelectorAll(".selection");
-const display = document.querySelector(".results");
-const scoredis = document.querySelector(".score");
-const score = document.querySelector(".cur-score");
 const selContainer = document.querySelector(".selections");
+const humanChoiceBox = document.querySelector(".choice-display.human");
+const botChoiceBox = document.querySelector(".choice-display.bot");
+
+const humanChoiceBoxImage = document.createElement("img");
+const botChoiceBoxImage = document.createElement("img");
+// humanChoiceBoxImage.setAttribute("class", "choice-display human");
+// botChoiceBoxImage.setAttribute("class", "choice-display bot");
 
 let playerScore = 0, computerScore = 0;
 
@@ -32,6 +36,22 @@ function getComputerChoice()
 
 function playRound(playerSelection, computerSelection)
 {
+  // Display choices
+  humanChoiceBox.textContent = "";
+  botChoiceBox.textContent = "";
+  switch (playerSelection) {
+    case "rock": humanChoiceBoxImage.setAttribute("src", "./img/rock-display-human.png"); break;
+    case "paper": humanChoiceBoxImage.setAttribute("src", "./img/paper-display-human.png"); break;
+    case "scissors": humanChoiceBoxImage.setAttribute("src", "./img/scissors-display-human.png"); break;
+  }
+  switch (computerSelection) {
+    case "rock": botChoiceBoxImage.setAttribute("src", "./img/rock-display-bot.png"); break;
+    case "paper": botChoiceBoxImage.setAttribute("src", "./img/paper-display-bot.png"); break;
+    case "scissors": botChoiceBoxImage.setAttribute("src", "./img/scissors-display-bot.png"); break;
+  }
+  humanChoiceBox.appendChild(humanChoiceBoxImage);
+  botChoiceBox.appendChild(botChoiceBoxImage);
+
   // If selections match, it's a draw
   if (playerSelection.toLowerCase() === computerSelection) {
     display.textContent = "It's a draw!";
