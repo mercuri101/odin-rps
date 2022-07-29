@@ -99,37 +99,3 @@ function promptRestart() {
     body.insertBefore(selContainer, display);
   })
 }
-
-function reportGameResult(playerScore, computerScore)
-{
-  let message = (playerScore == computerScore) ?
-    "Tie." :
-    (playerScore > computerScore) ?
-      "You win." :
-      "Computer wins.";
-
-  display.textContent = `You: ${playerScore}    Computer: ${computerScore}\n${message}`;
-}
-
-function game()
-{
-  let playerScore = 0, computerScore = 0;
-
-  // Play a five round game
-  for (let i = 0; i < 5; i++) {
-    let playerSelection = prompt(`Round ${i+1}. What do you play?`);
-    let computerSelection = getComputerChoice();
-    let roundResult = playRound(playerSelection, computerSelection);
-
-    // Update scores
-    if (roundResult === 1) {
-      playerScore++;
-    }
-    else if (roundResult === -1) {
-      computerScore++;
-    }
-  }
-
-  // Report results
-  reportGameResult(playerScore, computerScore);
-}
