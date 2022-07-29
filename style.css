@@ -61,6 +61,7 @@ body {
   display: flex;
   gap: 15px;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .selection,
@@ -75,13 +76,13 @@ body {
 .restart-btn {
   width: 150px;
   height: 70px;
-  margin: 0 auto;
+  margin: 0 auto 32px;
 }
 
 .selection:hover,
 .restart-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 10px 2px orange inset;
+  box-shadow: 0 0 10px 5px lavender inset;
 }
 /* Selections */
 

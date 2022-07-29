@@ -63,15 +63,17 @@ function playRound(playerSelection, computerSelection)
 
   // If selections match, it's a draw
   if (playerSelection === computerSelection) {
-    ;
+    colorBox("draw");
   }
 
   // Player plays rock
   else if (playerSelection === "rock") {
     if (computerSelection === "paper") {
+      colorBox("loss");
       computerScore++;
     }
     else {
+      colorBox("win");
       playerScore++;
     }
   }
@@ -79,9 +81,11 @@ function playRound(playerSelection, computerSelection)
   // Player plays paper
   else if (playerSelection === "paper") {
     if (computerSelection === "scissors") {
+      colorBox("loss");
       computerScore++;
     }
     else {
+      colorBox("win");
       playerScore++;
     }
   }
@@ -89,9 +93,11 @@ function playRound(playerSelection, computerSelection)
   // Player plays scissors
   else{
     if (computerSelection === "rock") {
+      colorBox("loss");
       computerScore++;
     }
     else {
+      colorBox("win");
       playerScore++;
     }
   }
@@ -130,5 +136,26 @@ function promptRestart() {
     computerScore = 0;
     body.replaceChild(instruction, winnerAnouncement);
     body.replaceChild(selContainer, restartBtn);
+    colorBox("init");
   })
+}
+
+const shadowSettings = "0 0 5px 2px";
+function colorBox(result) {
+  if (result === "draw") {
+    humanChoiceBox.style.boxShadow = shadowSettings + " goldenrod";
+    botChoiceBox.style.boxShadow = shadowSettings + " goldenrod";
+  }
+  else if (result === "win") {
+    humanChoiceBox.style.boxShadow = shadowSettings + " limegreen";
+    botChoiceBox.style.boxShadow = shadowSettings + " crimson";
+  }
+  else if (result === "loss") {
+    humanChoiceBox.style.boxShadow = shadowSettings + " crimson";
+    botChoiceBox.style.boxShadow = shadowSettings + " limegreen";
+  }
+  else {
+    humanChoiceBox.style.boxShadow = "0 0 0 0";
+    botChoiceBox.style.boxShadow = "0 0 0 0";
+  }
 }
