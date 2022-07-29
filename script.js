@@ -3,11 +3,18 @@ const selections = document.querySelectorAll(".selection");
 const selContainer = document.querySelector(".selections");
 const humanChoiceBox = document.querySelector(".choice-display.human");
 const botChoiceBox = document.querySelector(".choice-display.bot");
+const scoreHuman = document.querySelector(".score .human");
+const scoreBot = document.querySelector(".score .bot");
+const instruction = document.querySelector(".instruction");
+
+console.log(scoreHuman);
+console.log(scoreBot);
 
 const humanChoiceBoxImage = document.createElement("img");
 const botChoiceBoxImage = document.createElement("img");
-// humanChoiceBoxImage.setAttribute("class", "choice-display human");
-// botChoiceBoxImage.setAttribute("class", "choice-display bot");
+
+const winnerAnouncement = document.createElement("div");
+winnerAnouncement.setAttribute("class", "winner");
 
 let playerScore = 0, computerScore = 0;
 
@@ -55,30 +62,26 @@ function playRound(playerSelection, computerSelection)
   botChoiceBox.appendChild(botChoiceBoxImage);
 
   // If selections match, it's a draw
-  if (playerSelection.toLowerCase() === computerSelection) {
-    display.textContent = "It's a draw!";
+  if (playerSelection === computerSelection) {
+    ;
   }
 
   // Player plays rock
-  else if (playerSelection.toLowerCase() === "rock") {
+  else if (playerSelection === "rock") {
     if (computerSelection === "paper") {
-      display.textContent = "You lose! Paper beats rock.";
       computerScore++;
     }
     else {
-      display.textContent = "You win! Rock beats scissors";
       playerScore++;
     }
   }
 
   // Player plays paper
-  else if (playerSelection.toLowerCase() === "paper") {
+  else if (playerSelection === "paper") {
     if (computerSelection === "scissors") {
-      display.textContent = "You lose! Scissors beat paper.";
       computerScore++;
     }
     else {
-      display.textContent = "You win! Paper beats rock.";
       playerScore++;
     }
   }
@@ -86,20 +89,26 @@ function playRound(playerSelection, computerSelection)
   // Player plays scissors
   else{
     if (computerSelection === "rock") {
-      display.textContent = "You lose! Rock beats scissors.";
       computerScore++;
     }
     else {
-      display.textContent = "You win! Scissors beat paper.";
       playerScore++;
     }
   }
 
   // After each round, show score and check for the victor
-  score.textContent = `${playerScore} - ${computerScore}`;
-  if (playerScore == 5 || computerScore == 5) {
-    display.textContent = (playerScore == 5) ? "YOU WIN" : "COMPUTER WINS";
-    display.setAttribute("class", "final-result");
+  scoreHuman.textContent = `${playerScore}`;
+  scoreBot.textContent = `${computerScore}`;
+  if (playerScore == 5) {
+    winnerAnouncement.textContent = "YOU WIN";
+    winnerAnouncement.style.color = "limegreen";
+    body.replaceChild(winnerAnouncement, instruction);
+    promptRestart();
+  }
+  else if (computerScore == 5) {
+    winnerAnouncement.textContent = "COMPUTER WINS";
+    winnerAnouncement.style.color = "crimson";
+    body.replaceChild(winnerAnouncement, instruction);
     promptRestart();
   }
 }
@@ -108,16 +117,18 @@ function promptRestart() {
   const restartBtn = document.createElement("button");
   restartBtn.setAttribute("class", "restart-btn");
   restartBtn.textContent = "Restart";
-  body.insertBefore(restartBtn, selContainer);
-  selContainer.remove();
+  body.replaceChild(restartBtn, selContainer);
 
   restartBtn.addEventListener("click", () => {
-    score.textContent = "0 - 0";
-    display.textContent = "";
-    display.setAttribute("class", "results");
+    scoreHuman.textContent = "0";
+    scoreBot.textContent = "0";
+    humanChoiceBox.textContent = "?";
+    botChoiceBox.textContent = "?";
+    humanChoiceBox.setAttribute("class", "choice-display human init");
+    botChoiceBox.setAttribute("class", "choice-display human init");
     playerScore = 0;
     computerScore = 0;
-    restartBtn.remove();
-    body.insertBefore(selContainer, display);
+    body.replaceChild(instruction, winnerAnouncement);
+    body.replaceChild(selContainer, restartBtn);
   })
 }

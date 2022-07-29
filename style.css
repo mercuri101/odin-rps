@@ -41,12 +41,17 @@ body {
 
 
 /* Instruction */
-.instruction {
+.instruction,
+.winner {
   display: flex;
   justify-content: center;
   font-size: 30px;
   color: rgb(48, 80, 80);
   font-weight: 700;
+}
+
+.winner {
+  font-size: 60px;
 }
 /* Instruction */
 
@@ -68,14 +73,13 @@ body {
 }
 
 .restart-btn {
-  border: 1px dashed black;
   width: 150px;
+  height: 70px;
+  margin: 0 auto;
 }
 
 .selection:hover,
 .restart-btn:hover {
-  /* background-color: orange; */
-  color: white;
   transform: scale(1.05);
   box-shadow: 0 0 10px 2px orange inset;
 }
@@ -117,19 +121,6 @@ body {
   justify-content: center;
 }
 
-.results,
-.final-result {
-  border: 1px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 30px;
-  width: 400px;
-}
-
-.final-result {
-  font-weight: bold;
-}
 
 /* Score */
 .score {
