@@ -96,16 +96,26 @@ body {
 }
 
 .choice-display {
-  width: 200px;
-  height: 140px;
+  width: 225px;
+  height: 150px;
   border: 3px solid darkslategray;
   border-radius: 25px;
   display: flex;
-  justify-content: center;
   align-items: center;
   font-size: 60px;
 }
 
+.choice-display.human {
+  justify-content: flex-start;
+}
+
+.choice-display.bot {
+  justify-content: flex-end;
+}
+
+.choice-display.init {
+  justify-content: center;
+}
 
 .results,
 .final-result {

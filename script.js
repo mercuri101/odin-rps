@@ -38,7 +38,9 @@ function playRound(playerSelection, computerSelection)
 {
   // Display choices
   humanChoiceBox.textContent = "";
+  humanChoiceBox.setAttribute("class", "choice-display human");
   botChoiceBox.textContent = "";
+  botChoiceBox.setAttribute("class", "choice-display bot");
   switch (playerSelection) {
     case "rock": humanChoiceBoxImage.setAttribute("src", "./img/rock-display-human.png"); break;
     case "paper": humanChoiceBoxImage.setAttribute("src", "./img/paper-display-human.png"); break;
