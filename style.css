@@ -67,6 +67,7 @@ body {
 .selection,
 .restart-btn {
   border: 3px solid darkslategray;
+  background-color: white;
   padding: 8px;
   border-radius: 150px;
   width: 100px;
@@ -77,6 +78,8 @@ body {
   width: 150px;
   height: 70px;
   margin: 0 auto 32px;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .selection:hover,
@@ -85,7 +88,6 @@ body {
   box-shadow: 0 0 10px 5px lavender inset;
 }
 /* Selections */
-
 
 
 /* Display */
@@ -108,6 +110,7 @@ body {
   display: flex;
   align-items: center;
   font-size: 60px;
+  box-shadow: 0 0 5px 2px goldenrod;
 }
 
 .choice-display.human {
