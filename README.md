@@ -4,7 +4,7 @@
 [Selection icons](https://www.vecteezy.com/vector-art/690865-rock-paper-scissors-line-icons)
 
 ## Flaticon.com
-[Choice display imamges](https://www.flaticon.com/free-icon/rock-paper-scissors_4144533?related_id=4144475&origin=search)
+[Choice display images](https://www.flaticon.com/free-icon/rock-paper-scissors_4144533?related_id=4144475&origin=search)
 
 ## Flyclipart.com
 [Human icon](https://flyclipart.com/icon-human-icon-with-png-and-vector-format-for-free-unlimited-human-icon-png-874003)
