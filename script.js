@@ -7,26 +7,21 @@ const scoreHuman = document.querySelector(".score .human");
 const scoreBot = document.querySelector(".score .bot");
 const instruction = document.querySelector(".instruction");
 
-console.log(scoreHuman);
-console.log(scoreBot);
-
 const humanChoiceBoxImage = document.createElement("img");
 const botChoiceBoxImage = document.createElement("img");
 
 const winnerAnouncement = document.createElement("div");
 winnerAnouncement.setAttribute("class", "winner");
 
-let playerScore = 0, computerScore = 0;
+let playerScore = 0, botScore = 0;
 
-// For each selection play round on click with the selection and
-// computer's choice as arguments.
+// Once a selection is made, play round with the user's selection
+// and bot's choice.
 selections.forEach(sel => sel.addEventListener("click",
-  () => playRound(sel.getAttribute("data-selection"), getComputerChoice())));
+  () => playRound(sel.getAttribute("data-selection"), getBotChoice())));
 
 
-
-
-function getComputerChoice()
+function getBotChoice()
 {
   let choice = Math.floor(Math.random()*3);
 
@@ -41,19 +36,20 @@ function getComputerChoice()
   }
 }
 
-function playRound(playerSelection, computerSelection)
+
+function playRound(playerSelection, botSelection)
 {
   // Display choices
   humanChoiceBox.textContent = "";
-  humanChoiceBox.setAttribute("class", "choice-display human");
+  humanChoiceBox.classList.remove("init");
   botChoiceBox.textContent = "";
-  botChoiceBox.setAttribute("class", "choice-display bot");
+  botChoiceBox.classList.remove("init");
   switch (playerSelection) {
     case "rock": humanChoiceBoxImage.setAttribute("src", "./img/rock-display-human.png"); break;
     case "paper": humanChoiceBoxImage.setAttribute("src", "./img/paper-display-human.png"); break;
     case "scissors": humanChoiceBoxImage.setAttribute("src", "./img/scissors-display-human.png"); break;
   }
-  switch (computerSelection) {
+  switch (botSelection) {
     case "rock": botChoiceBoxImage.setAttribute("src", "./img/rock-display-bot.png"); break;
     case "paper": botChoiceBoxImage.setAttribute("src", "./img/paper-display-bot.png"); break;
     case "scissors": botChoiceBoxImage.setAttribute("src", "./img/scissors-display-bot.png"); break;
@@ -61,16 +57,19 @@ function playRound(playerSelection, computerSelection)
   humanChoiceBox.appendChild(humanChoiceBoxImage);
   botChoiceBox.appendChild(botChoiceBoxImage);
 
+  // The following code is to keep track of the score
+  // and apply visuals depending on results
+
   // If selections match, it's a draw
-  if (playerSelection === computerSelection) {
+  if (playerSelection === botSelection) {
     colorBox("draw");
   }
 
   // Player plays rock
   else if (playerSelection === "rock") {
-    if (computerSelection === "paper") {
+    if (botSelection === "paper") {
       colorBox("loss");
-      computerScore++;
+      botScore++;
     }
     else {
       colorBox("win");
@@ -80,9 +79,9 @@ function playRound(playerSelection, computerSelection)
 
   // Player plays paper
   else if (playerSelection === "paper") {
-    if (computerSelection === "scissors") {
+    if (botSelection === "scissors") {
       colorBox("loss");
-      computerScore++;
+      botScore++;
     }
     else {
       colorBox("win");
@@ -92,9 +91,9 @@ function playRound(playerSelection, computerSelection)
 
   // Player plays scissors
   else{
-    if (computerSelection === "rock") {
+    if (botSelection === "rock") {
       colorBox("loss");
-      computerScore++;
+      botScore++;
     }
     else {
       colorBox("win");
@@ -104,20 +103,21 @@ function playRound(playerSelection, computerSelection)
 
   // After each round, show score and check for the victor
   scoreHuman.textContent = `${playerScore}`;
-  scoreBot.textContent = `${computerScore}`;
+  scoreBot.textContent = `${botScore}`;
   if (playerScore == 5) {
     winnerAnouncement.textContent = "YOU WIN";
     winnerAnouncement.style.color = "limegreen";
     body.replaceChild(winnerAnouncement, instruction);
     promptRestart();
   }
-  else if (computerScore == 5) {
+  else if (botScore == 5) {
     winnerAnouncement.textContent = "COMPUTER WINS";
     winnerAnouncement.style.color = "crimson";
     body.replaceChild(winnerAnouncement, instruction);
     promptRestart();
   }
 }
+
 
 function promptRestart() {
   const restartBtn = document.createElement("button");
@@ -126,19 +126,20 @@ function promptRestart() {
   body.replaceChild(restartBtn, selContainer);
 
   restartBtn.addEventListener("click", () => {
+    playerScore = 0;
+    botScore = 0;
     scoreHuman.textContent = "0";
     scoreBot.textContent = "0";
     humanChoiceBox.textContent = "?";
     botChoiceBox.textContent = "?";
-    humanChoiceBox.setAttribute("class", "choice-display human init");
-    botChoiceBox.setAttribute("class", "choice-display human init");
-    playerScore = 0;
-    computerScore = 0;
+    humanChoiceBox.classList.add("init");
+    botChoiceBox.classList.add("init");
     body.replaceChild(instruction, winnerAnouncement);
     body.replaceChild(selContainer, restartBtn);
     colorBox("draw");
   })
 }
+
 
 const shadowSettings = "0 0 5px 2px";
 function colorBox(result) {
