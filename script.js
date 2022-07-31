@@ -136,7 +136,7 @@ function promptRestart() {
     computerScore = 0;
     body.replaceChild(instruction, winnerAnouncement);
     body.replaceChild(selContainer, restartBtn);
-    colorBox("init");
+    colorBox("draw");
   })
 }
 
@@ -153,9 +153,5 @@ function colorBox(result) {
   else if (result === "loss") {
     humanChoiceBox.style.boxShadow = shadowSettings + " crimson";
     botChoiceBox.style.boxShadow = shadowSettings + " limegreen";
-  }
-  else {
-    humanChoiceBox.style.boxShadow = "0 0 0 0";
-    botChoiceBox.style.boxShadow = "0 0 0 0";
   }
 }
