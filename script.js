@@ -1,3 +1,17 @@
+// Load the icons
+const humanRock = document.createElement("img");
+humanRock.setAttribute("src", "./img/rock-display-human.png");
+const humanPaper = document.createElement("img");
+humanPaper.setAttribute("src", "./img/paper-display-human.png");
+const humanScissors = document.createElement("img");
+humanScissors.setAttribute("src", "./img/scissors-display-human.png");
+const botRock = document.createElement("img");
+botRock.setAttribute("src", "./img/rock-display-bot.png");
+const botPaper = document.createElement("img");
+botPaper.setAttribute("src", "./img/paper-display-bot.png");
+const botScissors = document.createElement("img");
+botScissors.setAttribute("src", "./img/scissors-display-bot.png");
+
 const body = document.querySelector("body");
 const selections = document.querySelectorAll(".selection");
 const selContainer = document.querySelector(".selections");
@@ -6,9 +20,6 @@ const botChoiceBox = document.querySelector(".choice-display.bot");
 const scoreHuman = document.querySelector(".score .human");
 const scoreBot = document.querySelector(".score .bot");
 const instruction = document.querySelector(".instruction");
-
-const humanChoiceBoxImage = document.createElement("img");
-const botChoiceBoxImage = document.createElement("img");
 
 const winnerAnouncement = document.createElement("div");
 winnerAnouncement.setAttribute("class", "winner");
@@ -44,15 +55,16 @@ function playRound(playerSelection, botSelection)
   humanChoiceBox.classList.remove("init");
   botChoiceBox.textContent = "";
   botChoiceBox.classList.remove("init");
+  let humanChoiceBoxImage, botChoiceBoxImage;
   switch (playerSelection) {
-    case "rock": humanChoiceBoxImage.setAttribute("src", "./img/rock-display-human.png"); break;
-    case "paper": humanChoiceBoxImage.setAttribute("src", "./img/paper-display-human.png"); break;
-    case "scissors": humanChoiceBoxImage.setAttribute("src", "./img/scissors-display-human.png"); break;
+    case "rock": humanChoiceBoxImage = humanRock; break;
+    case "paper": humanChoiceBoxImage = humanPaper; break;
+    case "scissors": humanChoiceBoxImage = humanScissors; break;
   }
   switch (botSelection) {
-    case "rock": botChoiceBoxImage.setAttribute("src", "./img/rock-display-bot.png"); break;
-    case "paper": botChoiceBoxImage.setAttribute("src", "./img/paper-display-bot.png"); break;
-    case "scissors": botChoiceBoxImage.setAttribute("src", "./img/scissors-display-bot.png"); break;
+    case "rock": botChoiceBoxImage = botRock; break;
+    case "paper": botChoiceBoxImage = botPaper; break;
+    case "scissors": botChoiceBoxImage = botScissors; break;
   }
   humanChoiceBox.appendChild(humanChoiceBoxImage);
   botChoiceBox.appendChild(botChoiceBoxImage);
@@ -90,7 +102,7 @@ function playRound(playerSelection, botSelection)
   }
 
   // Player plays scissors
-  else{
+  else {
     if (botSelection === "rock") {
       colorBox("loss");
       botScore++;
